@@ -79,7 +79,8 @@
             filter: grayscale(100%);
             transition: filter 0.3s ease;
         }
-        .safety-symbol-container:hover .safety-symbol {
+        .safety-symbol-container:hover .safety-symbol,
+        .safety-symbol-container.active .safety-symbol {
             filter: grayscale(0%);
         }
         .tooltip {
@@ -101,10 +102,8 @@
             background-color: #e2e8f0; /* slate-200 */
             color: #1e293b; /* slate-800 */
         }
-        .safety-symbol-container:hover {
-            z-index: 50; /* Bring container to the front on hover */
-        }
-        .safety-symbol-container:hover .tooltip {
+        .safety-symbol-container:hover .tooltip,
+        .safety-symbol-container.active .tooltip {
             visibility: visible;
             opacity: 1;
         }
@@ -643,8 +642,8 @@
         }
 
         themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const isDark = document.documentElement.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
             localStorage.setItem('theme', newTheme);
             applyTheme(newTheme);
         });
@@ -661,6 +660,50 @@
                 applyTheme('light');
             }
         }
+        
+        // --- Tooltip Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const symbolContainers = document.querySelectorAll('.safety-symbol-container');
+
+            symbolContainers.forEach(container => {
+                const tooltip = container.querySelector('.tooltip');
+                
+                const showTooltip = () => {
+                    container.classList.add('active');
+                    const rect = tooltip.getBoundingClientRect();
+                    const screenWidth = window.innerWidth;
+
+                    if (rect.right > screenWidth) {
+                        tooltip.style.transform = `translateX(calc(-50% - ${rect.right - screenWidth + 16}px))`;
+                    } else if (rect.left < 0) {
+                         tooltip.style.transform = `translateX(calc(-50% - ${rect.left - 16}px))`;
+                    }
+                };
+
+                const hideTooltip = () => {
+                    container.classList.remove('active');
+                    tooltip.style.transform = 'translateX(-50%)';
+                };
+                
+                container.addEventListener('mouseenter', showTooltip);
+                container.addEventListener('mouseleave', hideTooltip);
+                container.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isActive = container.classList.contains('active');
+                    // Hide all other active tooltips
+                    document.querySelectorAll('.safety-symbol-container.active').forEach(c => c.classList.remove('active'));
+                    // Toggle current one
+                    if (!isActive) {
+                        showTooltip();
+                    }
+                });
+            });
+
+            // Hide tooltips when clicking anywhere else on the page
+            document.addEventListener('click', () => {
+                 document.querySelectorAll('.safety-symbol-container.active').forEach(c => c.classList.remove('active'));
+            });
+        });
 
     </script>
 </body>
