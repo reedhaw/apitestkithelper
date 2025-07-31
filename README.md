@@ -1,4 +1,4 @@
-# API Freshwater Master Test Kit Helper
+# API Freshwater Master Test Kit Helper & Timer
 
 A responsive, accessible web application designed to assist aquarium hobbyists in accurately performing water tests using the API Freshwater Master Test Kit. This tool provides clear instructions, multi-step timers, safety information, and result interpretation guides in a modern, user-friendly interface.
 
