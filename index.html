@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Freshwater Test Kit Helper</title>
+    <title>API Freshwater Test Helper</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // This config script tells Tailwind to use the 'class' strategy for dark mode.
@@ -20,32 +20,7 @@
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
-        }
-        .light {
-            background-color: #f1f5f9; /* slate-100 */
-            color: #1e293b; /* slate-800 */
-        }
-        .dark {
-            background-color: #1b1c1d;
-            color: #e2e8f0; /* slate-200 */
-        }
-        .card {
-            transition: background-color 0.3s;
-        }
-        .light .card {
-            background-color: #ffffff;
-        }
-        .dark .card {
-            background-color: #282a2c;
-        }
-        .timer-circle-bg {
-            transition: stroke 0.3s;
-        }
-        .light .timer-circle-bg {
-            stroke: #e2e8f0; /* slate-200 */
-        }
-        .dark .timer-circle-bg {
-            stroke: #4b5563; /* gray-600 */
+            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
         .timer-circle-fg {
             stroke-linecap: round;
@@ -65,12 +40,10 @@
         }
         .modal-content {
              transition: transform 0.25s ease, background-color 0.3s;
-        }
-        .light .modal-content {
-            background-color: #f1f5f9; /* slate-100 */
+             background-color: #f1f5f9; /* Default light mode background */
         }
         .dark .modal-content {
-            background-color: #334155; /* slate-700 */
+            background-color: #334155; /* Dark mode override */
         }
         .safety-symbol-container {
             position: relative;
@@ -93,14 +66,12 @@
             transform: translateX(-50%);
             margin-bottom: 8px;
             z-index: 50; /* Ensure tooltip is on top */
-        }
-        .light .tooltip {
-            background-color: #1e293b; /* slate-800 */
-            color: #f1f5f9; /* slate-100 */
+            background-color: #1e293b; /* Default light mode background */
+            color: #f1f5f9; /* Default light mode text */
         }
         .dark .tooltip {
-            background-color: #e2e8f0; /* slate-200 */
-            color: #1e293b; /* slate-800 */
+            background-color: #e2e8f0; /* Dark mode override */
+            color: #1e293b; /* Dark mode override */
         }
         .safety-symbol-container:hover .tooltip,
         .safety-symbol-container.active .tooltip {
@@ -109,14 +80,17 @@
         }
     </style>
 </head>
-<body class="p-4 sm:p-6 md:p-8">
+<body class="p-4 sm:p-6 md:p-8 bg-slate-100 text-slate-800 dark:bg-[#1b1c1d] dark:text-slate-200">
 
     <div class="max-w-5xl mx-auto">
-        <header class="relative text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">API Freshwater Test Kit Helper</h1>
-            <p class="text-md text-slate-700 dark:text-slate-400 mt-2">Your guide to accurate water testing.</p>
-            <div class="absolute top-0 right-0">
-                <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700">
+        <header class="flex justify-between items-center mb-8">
+            <div class="w-10"></div> <!-- Spacer to help center the title -->
+            <div class="text-center">
+                <h1 class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">API Freshwater Master Test Kit Helper</h1>
+                <p class="text-sm sm:text-md text-slate-700 dark:text-slate-400 mt-1 sm:mt-2">Your guide to accurate water testing.</p>
+            </div>
+            <div class="w-10">
+                 <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700">
                     <svg id="theme-icon-light" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                     <svg id="theme-icon-dark" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
                 </button>
@@ -126,7 +100,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- pH Test Card -->
-            <div id="ph-card" class="card rounded-xl shadow-lg border-t-4 border-blue-500">
+            <div id="ph-card" class="bg-white dark:bg-[#282a2c] rounded-xl shadow-lg border-t-4 border-blue-500">
                 <div class="p-6 relative flex flex-col h-full">
                     <div class="flex-grow">
                         <h2 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4">pH Test</h2>
@@ -146,7 +120,7 @@
             </div>
 
             <!-- High Range pH Test Card -->
-            <div id="high-range-ph-card" class="card rounded-xl shadow-lg border-t-4 border-red-500">
+            <div id="high-range-ph-card" class="bg-white dark:bg-[#282a2c] rounded-xl shadow-lg border-t-4 border-red-500">
                 <div class="p-6 relative flex flex-col h-full">
                     <div class="flex-grow">
                         <h2 class="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">High Range pH Test</h2>
@@ -166,20 +140,20 @@
             </div>
             
             <!-- Ammonia Test Card -->
-            <div id="ammonia-card" class="card rounded-xl shadow-lg border-t-4 border-amber-400">
+            <div id="ammonia-card" class="bg-white dark:bg-[#282a2c] rounded-xl shadow-lg border-t-4 border-amber-400">
                 <div class="p-6 relative flex flex-col h-full">
                     <div class="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
                         <div class="flex gap-2">
                             <div class="safety-symbol-container">
                                 <img src="https://www.ccohs.ca/images/whmis2015/corrosion.png" alt="Corrosion Symbol" class="safety-symbol h-8 w-8">
                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
-                                    <span class="font-bold">Ammonia Solution #2:</span> Corrosive. Causes severe skin burns and eye damage. Harmful to aquatic life. Check instruction manual for further information.
+                                    <span class="font-bold">Ammonia Solution #2:</span> Corrosive. Causes severe skin burns and eye damage. Harmful to aquatic life. Refer to instructions for more details and safety info.
                                 </div>
                             </div>
                             <div class="safety-symbol-container">
                                  <img src="https://www.ccohs.ca/images/whmis2015/exclamation_mark.png" alt="Exclamation Mark Symbol" class="safety-symbol h-8 w-8">
                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
-                                    <span class="font-bold">Ammonia Solution #1:</span> Harmful if swallowed, inhaled, or on skin. Causes serious eye irritation. Check instruction manual for further information.
+                                    <span class="font-bold">Ammonia Solution #1:</span> Harmful if swallowed, inhaled, or on skin. Causes serious eye irritation. Refer to instructions for more details and safety info.
                                 </div>
                             </div>
                         </div>
@@ -187,8 +161,8 @@
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </button>
                     </div>
+                    <h2 class="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-4">Ammonia Test</h2>
                     <div class="instructions-container flex-grow">
-                        <h2 class="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-4">Ammonia Test</h2>
                         <div class="instructions">
                             <ol class="list-decimal list-inside space-y-3 text-slate-800 dark:text-slate-300">
                                 <li>Fill a clean test tube with 5 ml of water.</li>
@@ -198,11 +172,21 @@
                                 <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
                             </ol>
                         </div>
+                        <div class="full-instructions hidden">
+                             <ol class="list-decimal list-inside space-y-3 text-slate-800 dark:text-slate-300">
+                                <li>Fill a clean test tube with 5 ml of water.</li>
+                                <li>Add 8 drops from Ammonia Test Solution #1.</li>
+                                <li>Add 8 drops from Ammonia Test Solution #2.</li>
+                                <li>Cap the test tube & shake vigorously for 5 seconds.</li>
+                                <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
+                                <li>Read the test results by comparing the colour of the solution to the Ammonia Colour Chart.</li>
+                            </ol>
+                        </div>
                     </div>
                     <div class="timer-container hidden text-center flex-grow flex flex-col items-center justify-center">
                         <div class="relative w-48 h-48 mx-auto mb-4">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
-                                <circle class="timer-circle-bg" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
+                                <circle class="timer-circle-bg stroke-slate-200 dark:stroke-slate-600" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
                                 <circle class="timer-circle-fg stroke-amber-400" cx="50" cy="50" r="45" stroke-width="10" fill="transparent" stroke-dasharray="283" stroke-dashoffset="283"></circle>
                             </svg>
                             <span class="absolute inset-0 flex items-center justify-center text-4xl font-bold text-amber-600 dark:text-amber-400"></span>
@@ -222,15 +206,15 @@
             </div>
 
             <!-- Nitrite Test Card -->
-            <div id="nitrite-card" class="card rounded-xl shadow-lg border-t-4 border-pink-500">
+            <div id="nitrite-card" class="bg-white dark:bg-[#282a2c] rounded-xl shadow-lg border-t-4 border-pink-500">
                 <div class="p-6 relative flex flex-col h-full">
                      <div class="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
                         <button onclick="showInstructionsModal('nitrite-card')" aria-label="Show instructions" class="info-icon-button hidden text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </button>
                     </div>
+                    <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-400 mb-4">Nitrite Test</h2>
                     <div class="instructions-container flex-grow">
-                        <h2 class="text-2xl font-bold text-pink-600 dark:text-pink-400 mb-4">Nitrite Test</h2>
                         <div class="instructions">
                             <ol class="list-decimal list-inside space-y-3 text-slate-800 dark:text-slate-300">
                                 <li>Fill a clean test tube with 5 ml of water.</li>
@@ -239,11 +223,20 @@
                                 <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
                             </ol>
                         </div>
+                         <div class="full-instructions hidden">
+                            <ol class="list-decimal list-inside space-y-3 text-slate-800 dark:text-slate-300">
+                                <li>Fill a clean test tube with 5 ml of water.</li>
+                                <li>Add 5 drops of Nitrite Test Solution.</li>
+                                <li>Cap the test tube and shake for 5 seconds.</li>
+                                <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
+                                <li>Read the test results by comparing the colour of the solution to the Nitrite Colour Chart.</li>
+                            </ol>
+                        </div>
                     </div>
                     <div class="timer-container hidden text-center flex-grow flex flex-col items-center justify-center">
                         <div class="relative w-48 h-48 mx-auto mb-4">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
-                                <circle class="timer-circle-bg" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
+                                <circle class="timer-circle-bg stroke-slate-200 dark:stroke-slate-600" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
                                 <circle class="timer-circle-fg stroke-pink-500" cx="50" cy="50" r="45" stroke-width="10" fill="transparent" stroke-dasharray="283" stroke-dashoffset="283"></circle>
                             </svg>
                             <span class="absolute inset-0 flex items-center justify-center text-4xl font-bold text-pink-600 dark:text-pink-400"></span>
@@ -263,20 +256,20 @@
             </div>
 
             <!-- Nitrate Test Card -->
-            <div id="nitrate-card" class="card rounded-xl shadow-lg border-t-4 border-purple-500">
+            <div id="nitrate-card" class="bg-white dark:bg-[#282a2c] rounded-xl shadow-lg border-t-4 border-purple-500">
                 <div class="p-6 relative flex flex-col h-full">
                      <div class="absolute top-4 right-4 flex flex-col items-end gap-2 z-10">
                         <div class="flex gap-2">
                             <div class="safety-symbol-container">
                                 <img src="https://www.ccohs.ca/images/whmis2015/corrosion.png" alt="Corrosion Symbol" class="safety-symbol h-8 w-8">
-                                <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
-                                    <span class="font-bold">Nitrate Solution #1:</span> Corrosive. Causes severe skin/eye damage. May cause respiratory irritation. Check instruction manual for further information.
+                                <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3 bg-slate-800 text-slate-100 dark:bg-slate-200 dark:text-slate-800">
+                                    <span class="font-bold">Nitrate Solution #1:</span> Corrosive. Causes severe skin/eye damage. May cause respiratory irritation. Refer to instructions for more details and safety info.
                                 </div>
                             </div>
                             <div class="safety-symbol-container">
                                  <img src="https://www.ccohs.ca/images/whmis2015/exclamation_mark.png" alt="Exclamation Mark Symbol" class="safety-symbol h-8 w-8">
-                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
-                                    <span class="font-bold">Nitrate Solution #2:</span> If exposed or concerned, get medical advice/attention. Check instruction manual for further information.
+                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3 bg-slate-800 text-slate-100 dark:bg-slate-200 dark:text-slate-800">
+                                    <span class="font-bold">Nitrate Solution #2:</span> If exposed or concerned, get medical advice/attention. Refer to instructions for more details and safety info.
                                 </div>
                             </div>
                         </div>
@@ -284,8 +277,8 @@
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </button>
                     </div>
+                    <h2 class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">Nitrate Test</h2>
                     <div class="instructions-container flex-grow">
-                        <h2 class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">Nitrate Test</h2>
                         <div class="instructions">
                             <ol class="list-decimal list-inside space-y-3 text-slate-800 dark:text-slate-300">
                                 <li>Fill a clean test tube with 5 ml of water.</li>
@@ -294,11 +287,23 @@
                                 <li class="font-semibold">Vigorously shake Solution #2 for 30 seconds.</li>
                             </ol>
                         </div>
+                        <div class="full-instructions hidden">
+                            <ol class="list-decimal list-inside space-y-3 text-slate-800 dark:text-slate-300">
+                                <li>Fill a clean test tube with 5 ml of water.</li>
+                                <li>Add 10 drops from Nitrate Test Solution #1.</li>
+                                <li>Cap the test tube & invert several times to mix.</li>
+                                <li class="font-semibold">Vigorously shake Solution #2 for 30 seconds.</li>
+                                <li>Add 10 drops from Nitrate Test Solution #2.</li>
+                                <li class="font-semibold">Cap the test tube and shake vigorously for 1 minute.</li>
+                                <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
+                                <li>Read the test results by comparing the colour of the solution to the Nitrate Colour Chart.</li>
+                            </ol>
+                        </div>
                     </div>
                     <div class="timer-container hidden text-center flex-grow flex flex-col items-center justify-center">
                         <div class="relative w-48 h-48 mx-auto mb-4">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
-                                <circle class="timer-circle-bg" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
+                                <circle class="timer-circle-bg stroke-slate-200 dark:stroke-slate-600" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
                                 <circle class="timer-circle-fg stroke-purple-500" cx="50" cy="50" r="45" stroke-width="10" fill="transparent" stroke-dasharray="283" stroke-dashoffset="283"></circle>
                             </svg>
                             <span class="absolute inset-0 flex items-center justify-center text-4xl font-bold text-purple-600 dark:text-purple-400"></span>
@@ -322,7 +327,7 @@
     <!-- Modal -->
     <div id="info-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div id="modal-backdrop" class="fixed inset-0"></div>
-        <div class="modal-content relative rounded-lg shadow-xl w-full max-w-md m-auto p-6 scale-95">
+        <div class="modal-content relative rounded-lg shadow-xl w-full max-w-md m-auto p-6 scale-95 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-start">
                 <h3 id="modal-title" class="text-xl font-bold text-slate-900 dark:text-white"></h3>
                 <button id="modal-close-btn" aria-label="Close" class="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
@@ -558,11 +563,9 @@
             const title = card.querySelector('h2').textContent;
             
             if (isInstructionRequest) {
-                const instructionsHTML = card.querySelector('.instructions').innerHTML;
+                const instructionsHTML = card.querySelector('.full-instructions').innerHTML;
                 modalTitle.textContent = `${title} Instructions`;
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = instructionsHTML;
-                modalBody.innerHTML = tempDiv.innerHTML;
+                modalBody.innerHTML = instructionsHTML;
             } else {
                 const info = resultInfo[baseCardId];
                 if (!info) return;
@@ -628,14 +631,10 @@
         function applyTheme(theme) {
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
-                document.body.classList.add('dark');
-                document.body.classList.remove('light');
                 lightIcon.classList.remove('hidden');
                 darkIcon.classList.add('hidden');
             } else {
                 document.documentElement.classList.remove('dark');
-                document.body.classList.remove('dark');
-                document.body.classList.add('light');
                 darkIcon.classList.remove('hidden');
                 lightIcon.classList.add('hidden');
             }
@@ -673,9 +672,9 @@
                     const rect = tooltip.getBoundingClientRect();
                     const screenWidth = window.innerWidth;
 
-                    if (rect.right > screenWidth) {
+                    if (rect.right > screenWidth - 16) { // 16px padding
                         tooltip.style.transform = `translateX(calc(-50% - ${rect.right - screenWidth + 16}px))`;
-                    } else if (rect.left < 0) {
+                    } else if (rect.left < 16) {
                          tooltip.style.transform = `translateX(calc(-50% - ${rect.left - 16}px))`;
                     }
                 };
