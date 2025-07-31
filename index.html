@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Freshwater Test Helper</title>
+    <title>API Freshwater Master Test Kit Helper</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm2-220h178v-280H182v280Zm220 0h176v-160H402v160Zm0-200h176v-80H402v80Zm218 200h178v-280H620v280Zm-438-480h596v-80H182v80Z'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // This config script tells Tailwind to use the 'class' strategy for dark mode.
@@ -17,10 +18,16 @@
         :root {
             color-scheme: light dark;
         }
+        *, *::before, *::after {
+            box-sizing: border-box; /* Ensures padding and borders don't cause overflow */
+        }
+        html, body {
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            width: 100%;
+        }
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
         .timer-circle-fg {
             stroke-linecap: round;
@@ -85,7 +92,7 @@
     <div class="max-w-5xl mx-auto">
         <header class="flex justify-between items-center mb-8">
             <div class="w-10"></div> <!-- Spacer to help center the title -->
-            <div class="text-center">
+            <div class="text-center flex-shrink min-w-0">
                 <h1 class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">API Freshwater Master Test Kit Helper</h1>
                 <p class="text-sm sm:text-md text-slate-700 dark:text-slate-400 mt-1 sm:mt-2">Your guide to accurate water testing.</p>
             </div>
@@ -147,13 +154,15 @@
                             <div class="safety-symbol-container">
                                 <img src="https://www.ccohs.ca/images/whmis2015/corrosion.png" alt="Corrosion Symbol" class="safety-symbol h-8 w-8">
                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
-                                    <span class="font-bold">Ammonia Solution #2:</span> Corrosive. Causes severe skin burns and eye damage. Harmful to aquatic life. Refer to instructions for more details and safety info.
+                                    <span class="font-bold">Ammonia Solution #2:</span> Corrosive. Causes severe skin burns and eye damage. Harmful to aquatic life.
+                                    <a href="https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf" target="_blank" rel="noopener noreferrer" class="block mt-1 underline text-blue-400 dark:text-cyan-400">See instructions for more safety information.</a>
                                 </div>
                             </div>
                             <div class="safety-symbol-container">
                                  <img src="https://www.ccohs.ca/images/whmis2015/exclamation_mark.png" alt="Exclamation Mark Symbol" class="safety-symbol h-8 w-8">
                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
-                                    <span class="font-bold">Ammonia Solution #1:</span> Harmful if swallowed, inhaled, or on skin. Causes serious eye irritation. Refer to instructions for more details and safety info.
+                                    <span class="font-bold">Ammonia Solution #1:</span> Harmful if swallowed, inhaled, or on skin. Causes serious eye irritation.
+                                    <a href="https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf" target="_blank" rel="noopener noreferrer" class="block mt-1 underline text-blue-400 dark:text-cyan-400">See instructions for more safety information.</a>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +193,7 @@
                         </div>
                     </div>
                     <div class="timer-container hidden text-center flex-grow flex flex-col items-center justify-center">
-                        <div class="relative w-48 h-48 mx-auto mb-4">
+                        <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-4">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
                                 <circle class="timer-circle-bg stroke-slate-200 dark:stroke-slate-600" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
                                 <circle class="timer-circle-fg stroke-amber-400" cx="50" cy="50" r="45" stroke-width="10" fill="transparent" stroke-dasharray="283" stroke-dashoffset="283"></circle>
@@ -234,7 +243,7 @@
                         </div>
                     </div>
                     <div class="timer-container hidden text-center flex-grow flex flex-col items-center justify-center">
-                        <div class="relative w-48 h-48 mx-auto mb-4">
+                        <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-4">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
                                 <circle class="timer-circle-bg stroke-slate-200 dark:stroke-slate-600" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
                                 <circle class="timer-circle-fg stroke-pink-500" cx="50" cy="50" r="45" stroke-width="10" fill="transparent" stroke-dasharray="283" stroke-dashoffset="283"></circle>
@@ -262,14 +271,16 @@
                         <div class="flex gap-2">
                             <div class="safety-symbol-container">
                                 <img src="https://www.ccohs.ca/images/whmis2015/corrosion.png" alt="Corrosion Symbol" class="safety-symbol h-8 w-8">
-                                <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3 bg-slate-800 text-slate-100 dark:bg-slate-200 dark:text-slate-800">
-                                    <span class="font-bold">Nitrate Solution #1:</span> Corrosive. Causes severe skin/eye damage. May cause respiratory irritation. Refer to instructions for more details and safety info.
+                                <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
+                                    <span class="font-bold">Nitrate Solution #1:</span> Corrosive. Causes severe skin/eye damage. May cause respiratory irritation.
+                                     <a href="https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf" target="_blank" rel="noopener noreferrer" class="block mt-1 underline text-blue-400 dark:text-cyan-400">See instructions for more safety information.</a>
                                 </div>
                             </div>
                             <div class="safety-symbol-container">
                                  <img src="https://www.ccohs.ca/images/whmis2015/exclamation_mark.png" alt="Exclamation Mark Symbol" class="safety-symbol h-8 w-8">
-                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3 bg-slate-800 text-slate-100 dark:bg-slate-200 dark:text-slate-800">
-                                    <span class="font-bold">Nitrate Solution #2:</span> If exposed or concerned, get medical advice/attention. Refer to instructions for more details and safety info.
+                                 <div class="tooltip w-64 whitespace-normal text-xs rounded py-2 px-3">
+                                    <span class="font-bold">Nitrate Solution #2:</span> If exposed or concerned, get medical advice/attention.
+                                     <a href="https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf" target="_blank" rel="noopener noreferrer" class="block mt-1 underline text-blue-400 dark:text-cyan-400">See instructions for more safety information.</a>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +312,7 @@
                         </div>
                     </div>
                     <div class="timer-container hidden text-center flex-grow flex flex-col items-center justify-center">
-                        <div class="relative w-48 h-48 mx-auto mb-4">
+                        <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-4">
                             <svg class="w-full h-full" viewBox="0 0 100 100">
                                 <circle class="timer-circle-bg stroke-slate-200 dark:stroke-slate-600" cx="50" cy="50" r="45" stroke-width="10" fill="transparent"></circle>
                                 <circle class="timer-circle-fg stroke-purple-500" cx="50" cy="50" r="45" stroke-width="10" fill="transparent" stroke-dasharray="283" stroke-dashoffset="283"></circle>
@@ -322,6 +333,9 @@
                 </div>
             </div>
         </div>
+        <footer class="text-center mt-8">
+            <a href="https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf" target="_blank" rel="noopener noreferrer" class="text-sm text-sky-700 dark:text-sky-400 hover:underline">View Full Instruction Manual</a>
+        </footer>
     </div>
 
     <!-- Modal -->
@@ -667,8 +681,7 @@
             symbolContainers.forEach(container => {
                 const tooltip = container.querySelector('.tooltip');
                 
-                const showTooltip = () => {
-                    container.classList.add('active');
+                const positionTooltip = () => {
                     const rect = tooltip.getBoundingClientRect();
                     const screenWidth = window.innerWidth;
 
@@ -679,28 +692,41 @@
                     }
                 };
 
+                const showTooltip = () => {
+                    container.classList.add('active');
+                    positionTooltip();
+                };
+
                 const hideTooltip = () => {
-                    container.classList.remove('active');
-                    tooltip.style.transform = 'translateX(-50%)';
+                    if (!container.classList.contains('sticky')) {
+                        container.classList.remove('active');
+                    }
                 };
                 
                 container.addEventListener('mouseenter', showTooltip);
                 container.addEventListener('mouseleave', hideTooltip);
                 container.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    const isActive = container.classList.contains('active');
-                    // Hide all other active tooltips
-                    document.querySelectorAll('.safety-symbol-container.active').forEach(c => c.classList.remove('active'));
-                    // Toggle current one
-                    if (!isActive) {
-                        showTooltip();
+                    const wasSticky = container.classList.contains('sticky');
+                    
+                    // Remove sticky from all other tooltips
+                    document.querySelectorAll('.safety-symbol-container.sticky').forEach(c => {
+                        c.classList.remove('sticky', 'active');
+                    });
+
+                    // Toggle sticky state for the clicked one
+                    if (!wasSticky) {
+                        container.classList.add('sticky', 'active');
+                        positionTooltip();
                     }
                 });
             });
 
             // Hide tooltips when clicking anywhere else on the page
             document.addEventListener('click', () => {
-                 document.querySelectorAll('.safety-symbol-container.active').forEach(c => c.classList.remove('active'));
+                 document.querySelectorAll('.safety-symbol-container.sticky').forEach(c => {
+                    c.classList.remove('sticky', 'active');
+                 });
             });
         });
 
