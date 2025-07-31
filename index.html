@@ -40,6 +40,30 @@
         .modal-content {
              transition: transform 0.25s ease;
         }
+        .safety-symbol-container {
+            position: relative;
+        }
+        .safety-symbol {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .safety-symbol-container:hover .safety-symbol {
+            filter: grayscale(0%);
+        }
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+        }
+        .safety-symbol-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
@@ -54,7 +78,7 @@
             
             <!-- pH Test Card -->
             <div id="ph-card" class="card rounded-xl shadow-lg overflow-hidden border-t-4 border-blue-500">
-                <div class="p-6">
+                <div class="p-6 relative">
                     <h2 class="text-2xl font-bold text-blue-400 mb-4">pH Test</h2>
                     <div class="instructions">
                         <ol class="list-decimal list-inside space-y-3 text-gray-300">
@@ -63,13 +87,14 @@
                             <li>Cap the test tube & invert several times to mix.</li>
                             <li>Compare the colour to the pH Colour Chart.</li>
                         </ol>
+                        <button onclick="showInfoModal('ph-card')" class="mt-6 w-full bg-sky-800 hover:bg-sky-700 text-sky-100 font-medium py-2 px-4 rounded-lg transition duration-300">What do my results mean?</button>
                     </div>
                 </div>
             </div>
 
             <!-- High Range pH Test Card -->
             <div id="high-range-ph-card" class="card rounded-xl shadow-lg overflow-hidden border-t-4 border-red-500">
-                <div class="p-6">
+                <div class="p-6 relative">
                     <h2 class="text-2xl font-bold text-red-400 mb-4">High Range pH Test</h2>
                     <div class="instructions">
                         <ol class="list-decimal list-inside space-y-3 text-gray-300">
@@ -78,6 +103,7 @@
                             <li>Cap the test tube & invert several times to mix.</li>
                             <li>Compare the colour to the High Range pH Colour Chart.</li>
                         </ol>
+                        <button onclick="showInfoModal('high-range-ph-card')" class="mt-6 w-full bg-sky-800 hover:bg-sky-700 text-sky-100 font-medium py-2 px-4 rounded-lg transition duration-300">What do my results mean?</button>
                     </div>
                 </div>
             </div>
@@ -85,6 +111,16 @@
             <!-- Ammonia Test Card -->
             <div id="ammonia-card" class="card rounded-xl shadow-lg overflow-hidden border-t-4 border-amber-400">
                 <div class="p-6 relative">
+                    <div class="absolute top-4 right-4 flex gap-2">
+                        <div class="safety-symbol-container">
+                            <img src="https://placehold.co/24x24/282a2c/ccc?text=C" onerror="this.onerror=null;this.src='https://placehold.co/24x24/282a2c/ccc?text=C';" alt="Corrosion Symbol" class="safety-symbol h-6 w-6">
+                            <div class="tooltip whitespace-nowrap bg-gray-900 text-white text-xs rounded py-1 px-2">Solution #2</div>
+                        </div>
+                        <div class="safety-symbol-container">
+                             <img src="https://placehold.co/24x24/282a2c/ccc?text=!" onerror="this.onerror=null;this.src='https://placehold.co/24x24/282a2c/ccc?text=!';" alt="Exclamation Mark Symbol" class="safety-symbol h-6 w-6">
+                            <div class="tooltip whitespace-nowrap bg-gray-900 text-white text-xs rounded py-1 px-2">Solutions #1 & #2</div>
+                        </div>
+                    </div>
                     <h2 class="text-2xl font-bold text-amber-400 mb-4">Ammonia Test</h2>
                     <div class="instructions">
                         <ol class="list-decimal list-inside space-y-3 text-gray-300">
@@ -95,6 +131,7 @@
                             <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
                         </ol>
                         <button onclick="startAmmoniaTest()" class="mt-6 w-full bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold py-3 px-4 rounded-lg transition duration-300">Start 5 Minute Timer</button>
+                        <button onclick="showInfoModal('ammonia-card')" class="mt-4 w-full bg-sky-800 hover:bg-sky-700 text-sky-100 font-medium py-2 px-4 rounded-lg transition duration-300">What do my results mean?</button>
                     </div>
                     <div class="timer-container hidden text-center">
                         <button onclick="showInstructionsModal('ammonia-card')" aria-label="Show instructions" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200">
@@ -129,6 +166,7 @@
                             <li class="font-semibold">Wait 5 minutes for the colour to develop.</li>
                         </ol>
                         <button onclick="startNitriteTest()" class="mt-6 w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Start 5 Minute Timer</button>
+                        <button onclick="showInfoModal('nitrite-card')" class="mt-4 w-full bg-sky-800 hover:bg-sky-700 text-sky-100 font-medium py-2 px-4 rounded-lg transition duration-300">What do my results mean?</button>
                     </div>
                     <div class="timer-container hidden text-center">
                         <button onclick="showInstructionsModal('nitrite-card')" aria-label="Show instructions" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200">
@@ -154,6 +192,16 @@
             <!-- Nitrate Test Card -->
             <div id="nitrate-card" class="card rounded-xl shadow-lg overflow-hidden border-t-4 border-purple-500">
                 <div class="p-6 relative">
+                     <div class="absolute top-4 right-4 flex gap-2">
+                        <div class="safety-symbol-container">
+                            <img src="https://placehold.co/24x24/282a2c/ccc?text=C" onerror="this.onerror=null;this.src='https://placehold.co/24x24/282a2c/ccc?text=C';" alt="Corrosion Symbol" class="safety-symbol h-6 w-6">
+                            <div class="tooltip whitespace-nowrap bg-gray-900 text-white text-xs rounded py-1 px-2">Solution #1</div>
+                        </div>
+                        <div class="safety-symbol-container">
+                             <img src="https://placehold.co/24x24/282a2c/ccc?text=!" onerror="this.onerror=null;this.src='https://placehold.co/24x24/282a2c/ccc?text=!';" alt="Exclamation Mark Symbol" class="safety-symbol h-6 w-6">
+                            <div class="tooltip whitespace-nowrap bg-gray-900 text-white text-xs rounded py-1 px-2">Solutions #1 & #2</div>
+                        </div>
+                    </div>
                     <h2 class="text-2xl font-bold text-purple-400 mb-4">Nitrate Test</h2>
                     <div class="instructions">
                         <ol class="list-decimal list-inside space-y-3 text-gray-300">
@@ -163,6 +211,7 @@
                             <li class="font-semibold">Vigorously shake Solution #2 for 30 seconds.</li>
                         </ol>
                         <button onclick="startNitrateTest(1)" class="mt-6 w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Start 30s Timer</button>
+                        <button onclick="showInfoModal('nitrate-card')" class="mt-4 w-full bg-sky-800 hover:bg-sky-700 text-sky-100 font-medium py-2 px-4 rounded-lg transition duration-300">What do my results mean?</button>
                     </div>
                     <div class="timer-container hidden text-center">
                         <button onclick="showInstructionsModal('nitrate-card')" aria-label="Show instructions" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200">
@@ -187,27 +236,50 @@
         </div>
     </div>
 
-    <!-- Instructions Modal -->
-    <div id="instructions-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- Modal -->
+    <div id="info-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div id="modal-backdrop" class="fixed inset-0"></div>
         <div class="modal-content relative bg-gray-800 rounded-lg shadow-xl w-full max-w-md m-auto p-6 scale-95">
             <div class="flex justify-between items-start">
                 <h3 id="modal-title" class="text-xl font-bold text-white"></h3>
-                <button id="modal-close-btn" aria-label="Close instructions" class="text-gray-400 hover:text-gray-200">
+                <button id="modal-close-btn" aria-label="Close" class="text-gray-400 hover:text-gray-200">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
-            <div id="modal-body" class="mt-4 text-gray-300"></div>
+            <div id="modal-body" class="mt-4 text-gray-300 space-y-4"></div>
         </div>
     </div>
 
 
     <script>
+        // --- Data for Modals ---
+        const resultInfo = {
+            'ph-card': {
+                title: 'Recommended pH Levels',
+                content: `<p>A pH of 7.0 is ideal when keeping a community aquarium containing a variety of tropical fish. Goldfish and livebearers prefer a pH of 7.5. Many Amazonian fish, like angelfish and neon tetras, prefer a pH of 6.5 to 6.8. Mollies and swordtails thrive at pH 7.2 to 7.5.</p><p>To raise or lower the pH, use API pH UP® or pH DOWN®. To automatically adjust pH to a preset level, use API PROPER pH® 6.5, 7.0, or 7.5.</p>`
+            },
+            'high-range-ph-card': {
+                title: 'Recommended High Range pH Levels',
+                content: `<p>A pH of 7.5 is ideal for most live-bearing fish, such as mollies & swordtails. Goldfish will also thrive at a pH of 7.5. African cichlids prefer a pH of 8.2. Marine fish & invertebrates require a pH between 8.2 - 8.4.</p><p>To adjust pH, you can use API pH UP or pH DOWN, or use API PROPER pH 7.5 to automatically adjust & hold pH at 7.5.</p>`
+            },
+            'ammonia-card': {
+                title: 'Reducing Ammonia Levels',
+                content: `<p>In a new aquarium, the ammonia level may rise and then fall rapidly as the biological filter becomes established. This process may take several weeks.</p><p>In an established aquarium, the ammonia level should always be 0 ppm. Any level above 0 can harm fish. If ammonia tests high (4 ppm or more), perform a water change of 25% or more, then add API AMMO LOCK® to quickly detoxify ammonia. A daily water change may be required over several days.</p>`
+            },
+            'nitrite-card': {
+                title: 'Interpreting Nitrite Results',
+                content: `<div><h4 class="font-bold text-lg mb-2">What the Results Mean</h4><p>In new aquariums the nitrite level will gradually climb to 5 ppm or more. As the biological filter becomes established, nitrite levels will drop to 0 ppm. In an established aquarium, the nitrite level should always remain at 0; any level above 0 can harm fish. The presence of nitrite indicates possible over-feeding, too many fish, or inadequate biological filtration.</p></div><div><h4 class="font-bold text-lg mb-2 mt-4">Reducing Nitrite Levels</h4><p>Add API NITRA-ZORB® to the aquarium filter to remove nitrite. Making partial water changes can also help reduce nitrite. Adding API AQUARIUM SALT will reduce nitrite toxicity to fish while the biological filter is removing the nitrite.</p></div>`
+            },
+            'nitrate-card': {
+                title: 'Interpreting Nitrate Results',
+                content: `<div><h4 class="font-bold text-lg mb-2">What the Results Mean</h4><p>In new aquariums the nitrate level will gradually climb as the biological filter becomes established. A nitrate level of 40 ppm or less is recommended for freshwater aquariums. In marine aquariums, it is best to keep nitrate as low as possible.</p></div><div><h4 class="font-bold text-lg mb-2 mt-4">Reducing Nitrate Levels</h4><p>Add API NITRA-ZORB® to the filter to remove nitrate. Making partial water changes can also help reduce nitrate. However, because many tap water supplies contain nitrate, it can be difficult to lower nitrate levels by this method.</p></div>`
+            }
+        };
+
         // Object to hold the state and interval for each timer
         let timers = {};
 
         // --- Timer Core Functions ---
-
         function runTimerInterval(cardId) {
             const card = document.getElementById(cardId);
             const timerState = timers[cardId];
@@ -316,7 +388,6 @@
         }
 
         // --- Test Specific Functions ---
-
         function startNitriteTest() {
             const cardId = 'nitrite-card';
             const onComplete = () => {
@@ -324,13 +395,7 @@
                 card.querySelector('.timer-container').classList.add('hidden');
                 const nextSteps = card.querySelector('.next-steps');
                 nextSteps.classList.remove('hidden');
-                nextSteps.innerHTML = `
-                    <p class="text-lg font-semibold text-center text-green-500 mb-4">Timer Finished!</p>
-                    <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                        <li>Read the test results by comparing the colour to the Nitrite Colour Chart.</li>
-                    </ol>
-                    <button onclick="resetTest('${cardId}')" class="mt-6 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Reset Test</button>
-                `;
+                nextSteps.innerHTML = `<p class="text-lg font-semibold text-center text-green-500 mb-4">Timer Finished!</p><ol class="list-decimal list-inside space-y-3 text-gray-300"><li>Read the test results by comparing the colour to the Nitrite Colour Chart.</li></ol><button onclick="resetTest('${cardId}')" class="mt-6 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Reset Test</button>`;
             };
             startTimer(cardId, 300, onComplete, 'Waiting for colour to develop...');
         }
@@ -342,13 +407,7 @@
                 card.querySelector('.timer-container').classList.add('hidden');
                 const nextSteps = card.querySelector('.next-steps');
                 nextSteps.classList.remove('hidden');
-                nextSteps.innerHTML = `
-                    <p class="text-lg font-semibold text-center text-green-500 mb-4">Timer Finished!</p>
-                    <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                        <li>Read the test results by comparing the colour to the Ammonia Colour Chart.</li>
-                    </ol>
-                    <button onclick="resetTest('${cardId}')" class="mt-6 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Reset Test</button>
-                `;
+                nextSteps.innerHTML = `<p class="text-lg font-semibold text-center text-green-500 mb-4">Timer Finished!</p><ol class="list-decimal list-inside space-y-3 text-gray-300"><li>Read the test results by comparing the colour to the Ammonia Colour Chart.</li></ol><button onclick="resetTest('${cardId}')" class="mt-6 w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Reset Test</button>`;
             };
             startTimer(cardId, 300, onComplete, 'Waiting for colour to develop...');
         }
@@ -374,10 +433,7 @@
                 case 2:
                     duration = 60;
                     description = 'Shaking test tube...';
-                    onComplete = () => {
-                         // Automatically start the next step
-                         startNitrateTest(3);
-                    };
+                    onComplete = () => startNitrateTest(3);
                     break;
                 case 3:
                     duration = 300;
@@ -393,24 +449,40 @@
         }
 
         // --- Modal Functions ---
-        const modal = document.getElementById('instructions-modal');
+        const modal = document.getElementById('info-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalBody = document.getElementById('modal-body');
         const modalCloseBtn = document.getElementById('modal-close-btn');
         const modalBackdrop = document.getElementById('modal-backdrop');
 
-        function showInstructionsModal(cardId) {
-            const card = document.getElementById(cardId);
-            const title = card.querySelector('h2').textContent;
-            const instructionsHTML = card.querySelector('.instructions').innerHTML;
+        function showInfoModal(cardId) {
+            const info = resultInfo[cardId];
+            if (!info) return;
             
-            modalTitle.textContent = `${title} Instructions`;
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = instructionsHTML;
-            tempDiv.querySelector('button')?.remove();
-            modalBody.innerHTML = tempDiv.innerHTML;
+            modalTitle.textContent = info.title;
+            modalBody.innerHTML = info.content;
             
+            // This can handle both regular instructions and result info
+            if(cardId.includes('card')){
+                 const card = document.getElementById(cardId);
+                 const title = card.querySelector('h2').textContent;
+                 const instructionsHTML = card.querySelector('.instructions').innerHTML;
+                 modalTitle.textContent = cardId.includes('timer') ? `${title} Instructions` : info.title;
+
+                 if(cardId.includes('timer')){
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = instructionsHTML;
+                    tempDiv.querySelectorAll('button').forEach(b => b.remove());
+                    modalBody.innerHTML = tempDiv.innerHTML;
+                 } else {
+                    modalBody.innerHTML = info.content;
+                 }
+            }
             openModal();
+        }
+
+        function showInstructionsModal(cardId) {
+            showInfoModal(cardId + '-timer'); // Differentiate call for instructions
         }
 
         let focusableEls, firstFocusableEl, lastFocusableEl;
@@ -456,7 +528,6 @@
                 closeModal();
             }
         });
-
     </script>
 </body>
 </html>
