@@ -13,7 +13,7 @@ A browser-based tool for timing and interpreting tests using the **API Freshwate
 
 [Try it here on GitHub Pages](https://reedhaw.github.io/apitestkithelper/)
 
-> Works fully offline – just save the page if needed!
+> Works fully offline – just save the page if needed! WHMIS symbols may not display correctly if run with no internet access while downloaded.
 
 ## Usage
 
