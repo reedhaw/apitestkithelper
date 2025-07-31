@@ -13,7 +13,9 @@
           darkMode: 'class',
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             color-scheme: light dark;
@@ -26,7 +28,7 @@
             width: 100%;
         }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
         .timer-circle-fg {
@@ -333,10 +335,13 @@
                 </div>
             </div>
         </div>
-         <footer class="text-center mt-8 space-y-2">
+        <footer class="text-center mt-8 space-y-2">
             <a href="https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf" target="_blank" rel="noopener noreferrer" class="text-sm text-sky-700 dark:text-sky-400 hover:underline">View Full Instruction Manual</a>
             <p class="text-xs text-slate-500 dark:text-slate-400">
-                Copyright &copy; <span id="current-year"></span> Reed Haw. Licensed under GPL-3.0. The creator and this tool is not affiliated with Mars Fishcare or API®.
+                Copyright &copy; <span id="current-year"></span> Reed Haw. Licensed under GPL-3.0.
+            </p>
+             <p class="text-xs text-slate-500 dark:text-slate-400">
+                Disclaimer: This is an unofficial tool. The creator is not affiliated with Mars Fishcare or API®.
             </p>
         </footer>
     </div>
@@ -355,10 +360,6 @@
         </div>
     </div>
 
-    <script>
-            // This script finds the span with the id "current-year" and inserts the current year.
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
 
     <script>
         // --- Data for Modals ---
