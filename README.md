@@ -12,9 +12,9 @@ You can access a live version of this application hosted on GitHub Pages here: h
 * **Interactive Timers:** Multi-step, concurrent timers for Ammonia, Nitrite, and Nitrate tests, featuring circular progress indicators.
 * **Pause & Restart:** Full control over active timers with pause, resume, and restart functionality.
 * **Safety First:** Integrated WHMIS pictograms for relevant tests with "sticky" tooltips that provide detailed hazard information and link to the official manual.
-* **Result Interpretation:** "What do my results mean?" modals provide official API® guidance on interpreting test results and recommended actions.
+* **Result Interpretation:** "What do my results mean?" modals provide official API® guidance from the instruction manual on interpreting test results and recommended actions.
 * **Light & Dark Modes:** A sleek, accessible theme toggle that saves user preference for a comfortable viewing experience.
-* **Fully Responsive:** Designed to work flawlessly on any device, from a mobile phone to a desktop computer, with no horizontal scrolling.
+* **Fully Responsive:** Designed to work flawlessly on any device, from a mobile phone to a desktop computer.
 * **WCAG 2.2 Compliant:** Built with a focus on accessibility, ensuring high-contrast text and elements in both themes.
 
 ## How to Use
