@@ -1,42 +1,30 @@
-# API Freshwater Test Kit Helper
+# API Freshwater Master Test Kit Helper
 
-A browser-based tool for timing and interpreting tests using the **API Freshwater Master Test Kit**. Designed to help hobbyists perform aquarium water tests accurately, safely, and with a little less guesswork.
-
-## Features
-
-- Built-in countdown timers for each test (Ammonia, Nitrite, Nitrate, pH, High Range pH)
-- In-line instructions for every test type
-- WHMIS hazard symbols with tooltips for safety awareness
-- Interactive popups with result interpretations and tips on reducing unwanted levels
+A responsive, accessible web application designed to assist aquarium hobbyists in accurately performing water tests using the API Freshwater Master Test Kit. This tool provides clear instructions, multi-step timers, safety information, and result interpretation guides in a modern, user-friendly interface.
 
 ## Live Demo
 
-[Try it here on GitHub Pages](https://reedhaw.github.io/apitestkithelper/)
+You can access a live version of this application hosted on GitHub Pages here: https://reedhaw.github.io/apitestkithelper/
 
-> Works fully offline – just save the page if needed! WHMIS symbols may not display correctly if run with no internet access while downloaded.
+## Key Features
 
-## Usage
+* **Step-by-Step Instructions:** Clear, concise instructions for all five tests in the master kit (pH, High Range pH, Ammonia, Nitrite, Nitrate).
+* **Interactive Timers:** Multi-step, concurrent timers for Ammonia, Nitrite, and Nitrate tests, featuring circular progress indicators.
+* **Pause & Restart:** Full control over active timers with pause, resume, and restart functionality.
+* **Safety First:** Integrated WHMIS pictograms for relevant tests with "sticky" tooltips that provide detailed hazard information and link to the official manual.
+* **Result Interpretation:** "What do my results mean?" modals provide official API® guidance on interpreting test results and recommended actions.
+* **Light & Dark Modes:** A sleek, accessible theme toggle that saves user preference for a comfortable viewing experience.
+* **Fully Responsive:** Designed to work flawlessly on any device, from a mobile phone to a desktop computer, with no horizontal scrolling.
+* **WCAG 2.2 Compliant:** Built with a focus on accessibility, ensuring high-contrast text and elements in both themes.
 
-1. Open the [GitHub Pages link](https://reedhaw.github.io/apitestkithelper/)
-2. Click on the test you’re performing.
-3. Follow the step-by-step instructions.
-4. Start the timer and get results and advice when it finishes.
+## How to Use
 
-## Safety First
-
-This tool highlights WHMIS symbols based on the **API Master Test Kit instructions** to keep you aware of potential chemical hazards during testing. Be sure to handle test solutions with care and wash your hands afterward.
+Simply open the [`index.html`](https://reedhaw.github.io/apitestkithelper/) file in any modern web browser. All necessary assets and scripts are included and loaded from CDNs, so no local server or installation is required.
 
 ## License
 
-This project uses the **GNU GPLv3** license.  
-While the GPL permits commercial use, the author intends this for **non-commercial use** only.  
-Please contact me if you’d like to incorporate it into a commercial product or service.
+This project is licensed under the **GNU General Public License v3.0**. Please see the `LICENSE` file for full details.
 
-## Credits
+## Disclaimer
 
-Created by [Reed Haw](https://github.com/your-username).  
-Based on the API Freshwater Master Test Kit and user experience in planted aquariums.
-
----
-
-*Not affiliated with API or Mars Fishcare. This tool is a fan-made utility for fishkeepers everywhere.*
+This application is an unofficial helper tool created for convenience. It is not a replacement for the official API® Freshwater Master Test Kit [instruction manual](https://apifishcare.com/pdfs/products-us/freshwater-master-test-kit/api-freshwater-master-test-kit-instruction-manual.pdf). Always refer to the official manual for complete safety information, instructions, and color chart comparisons. The creator of this tool is not affiliated with Mars Fishcare or API®.
